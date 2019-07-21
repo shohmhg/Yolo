@@ -6,6 +6,8 @@ const toDoListName = "toDoList";
 const textColor = "css-textColor"
 const nothing = "";
 
+const toDoListArray = [];
+
 function saveText(text){
     localStorage.setItem(toDoListName, text);
 
@@ -13,14 +15,14 @@ function saveText(text){
 }
 
 function showText(){
-    const listName = localStorage.getItem(toDoListName);
+    const listAct = localStorage.getItem(toDoListName);
 
     const li = document.createElement("li");
     const delBtn = document.createElement("button");
     const span = document .createElement("span");
 
     delBtn.innerText = `X`;
-    span.innerText = `${listName}`;
+    span.innerText = `${listAct}`;
     span.classList.add(textColor);
 
     li.appendChild(delBtn);
@@ -28,7 +30,7 @@ function showText(){
     
     doList.appendChild(li);
 
-    console.log(`showText ${listName}`);
+    console.log(`showText ${listAct}`);
 }
 
 function setText(evt){
