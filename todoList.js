@@ -9,28 +9,49 @@ const nothing = "";
 const toDoListArray = [];
 
 function saveText(text){
-    localStorage.setItem(toDoListName, text);
+    //localStorage.setItem(toDoListName, text);
 
     console.log(`saveText ${text}`);
 }
 
-function showText(){
-    const listAct = localStorage.getItem(toDoListName);
+function saveListArray(text){
+//    const listAct = localStorage.getItem(toDoListName);
 
     const li = document.createElement("li");
     const delBtn = document.createElement("button");
     const span = document .createElement("span");
 
+    const id = toDoListArray.length + 1;
+
     delBtn.innerText = `X`;
-    span.innerText = `${listAct}`;
+    span.innerText = `${text}`;
     span.classList.add(textColor);
 
     li.appendChild(delBtn);
     li.appendChild(span);
+    li.id = id;
     
     doList.appendChild(li);
 
-    console.log(`showText ${listAct}`);
+    const toDoListObject = {
+        text : text,
+        id : id
+    };
+    
+    toDoListArray.push(toDoListObject);
+
+    localStorage.setItem(toDoListName, JSON.stringify(toDoListArray));
+}
+
+function showText(){    
+    const getList = localStorage.getItem(toDoListName),
+        parseList = JSON.parse(getList);
+
+    parseList.forEach(function(value){
+        saveListArray(value.text);
+    });
+
+    console.log(`showText ${parseList}`);
 }
 
 function setText(evt){
@@ -38,15 +59,19 @@ function setText(evt){
 
     const text = toDoInput.value;
 
-    saveText(text);
-    showText();
+    saveListArray(text);
     toDoInput.value = null;
 
     console.log(`setText ${text}`);
 }
 
 function enter(){
-    toDoList.addEventListener("submit", setText);
+    const check = localStorage.getItem(toDoListName);
+
+    toDoList.addEventListener("submit", setText); //saveText    
+    if(check !== null){
+        showText();
+    }
 }
 
 function init(){
