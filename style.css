@@ -1,0 +1,33 @@
+body{           
+  background-color: black;
+}
+
+.btn{
+  cursor: pointer;
+}
+
+h1{
+  color: greenyellow;
+  transition: color 1s ease-in-out;
+}
+
+h4{
+  color : wheat;
+}
+
+.clicked {
+  color : green;
+}
+
+.form,
+.greeting {
+  display : none;
+}
+
+.showing{
+  display: block;
+}
+
+.css-textColor{
+  color : greenyellow;
+}
