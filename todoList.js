@@ -4,6 +4,7 @@ const toDoList = document.querySelector(".js-list"),
 
 const toDoListName = "toDoList";
 const textColor = "css-textColor"
+const nothing = "";
 
 function saveText(text){
     localStorage.setItem(toDoListName, text);
