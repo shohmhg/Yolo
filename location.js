@@ -1,3 +1,4 @@
+const API_KEY = "ec091fd0e142b0fba2c3ca211c831486";
 const LOCATION = "location";
 
 function suc(position){
