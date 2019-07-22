@@ -6,12 +6,21 @@ const toDoListName = "toDoList";
 const textColor = "css-textColor"
 const nothing = "";
 
-const toDoListArray = [];
+let toDoListArray = [];
 
-function saveText(text){
-    //localStorage.setItem(toDoListName, text);
+function delList(evt){
+    const btn = evt.target;
+    const li = btn.parentNode;
+    doList.removeChild(li);
 
-    console.log(`saveText ${text}`);
+    const currentList = toDoListArray.filter(function(value){
+        console.log(value.id, parseInt(li.id));
+        return value.id !== parseInt(li.id);
+    });
+    toDoListArray = currentList;
+    localStorage.setItem(toDoListName, toDoListArray);
+
+    console.log(li, currentList), toDoListArray;
 }
 
 function saveListArray(text){
@@ -24,6 +33,7 @@ function saveListArray(text){
     const id = toDoListArray.length + 1;
 
     delBtn.innerText = `X`;
+    delBtn.addEventListener("click", delList);
     span.innerText = `${text}`;
     span.classList.add(textColor);
 
